@@ -1,0 +1,22 @@
+{
+  "name": "graphql",
+  "version": "1.0.0",
+  "description": "It contains the tuorial of graphql with node js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bhavin789/GraphQL.git"
+  },
+  "keywords": [
+    "graphql"
+  ],
+  "author": "Bhavin AGarwal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bhavin789/GraphQL/issues"
+  },
+  "homepage": "https://github.com/Bhavin789/GraphQL#readme"
+}
