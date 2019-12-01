@@ -4,14 +4,66 @@ import graphqlHTTP from "express-graphql";
 
 var schema = buildSchema(`
   type Query {
-    hello: String
+    user(id: Int!): Person
+    users(gender: String): [Person] 
+  },
+  type Person {
+    id: Int
+    name: String
+    gender: String
+    age: Int
   }
 `);
 
-var root = {
-  hello: () => {
-    return "Its a GraphQL tutorial";
+const users = [
+  {
+    id: 1,
+    name: "Brian",
+    age: "21",
+    gender: "M"
+  },
+  {
+    id: 2,
+    name: "Kim",
+    age: "22",
+    gender: "M"
+  },
+  {
+    id: 3,
+    name: "Joseph",
+    age: "23",
+    gender: "M"
+  },
+  {
+    id: 3,
+    name: "Faith",
+    age: "23",
+    gender: "F"
+  },
+  {
+    id: 5,
+    name: "Joy",
+    age: "25",
+    gender: "F"
   }
+];
+
+const getUser = args => {
+  const userId = args.id;
+  return users.filter(user => user.id === userId)[0];
+};
+const getUsers = args => {
+  if (args.gender) {
+    const gender = args.gender;
+    return users.filter(user => user.gender === gender);
+  } else {
+    return users;
+  }
+};
+
+var root = {
+  user: getUser,
+  users: getUsers
 };
 
 var app = express();
