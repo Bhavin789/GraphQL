@@ -7,6 +7,9 @@ var schema = buildSchema(`
     user(id: Int!): Person
     users(gender: String): [Person] 
   },
+  type Mutation{
+    updateUser(id: Int!, age: Int!): Person
+  }
   type Person {
     id: Int
     name: String
@@ -48,6 +51,10 @@ const users = [
   }
 ];
 
+/**
+ * Query Resolver functions
+ */
+
 const getUser = args => {
   const userId = args.id;
   return users.filter(user => user.id === userId)[0];
@@ -61,9 +68,24 @@ const getUsers = args => {
   }
 };
 
+/**
+ * Mutaion Resolver function
+ */
+
+const updateUser = ({ id, age }) => {
+  users.map(user => {
+    if (user.id === id) {
+      user.age = age;
+    }
+  });
+
+  return users.filter(user => user.id === id)[0];
+};
+
 var root = {
   user: getUser,
-  users: getUsers
+  users: getUsers,
+  updateUser: updateUser
 };
 
 var app = express();
