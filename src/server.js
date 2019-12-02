@@ -15,16 +15,16 @@ import Mongoose from "mongoose";
 Mongoose.connect("mongodb://localhost/graphqltutorial");
 
 const PersonModel = Mongoose.model("person", {
-  firstName: String,
-  lastName: String
+  firstname: String,
+  lastname: String
 });
 
 const PersonType = new GraphQLObjectType({
   name: "Person",
   fields: {
     id: { type: GraphQLID },
-    firstName: { type: GraphQLString },
-    lastName: { type: GraphQLString }
+    firstname: { type: GraphQLString },
+    lastname: { type: GraphQLString }
   }
 });
 
@@ -40,8 +40,11 @@ const schema = new GraphQLSchema({
       },
       person: {
         type: PersonType,
+        args: {
+          id: { type: GraphQLNonNull(GraphQLID) }
+        },
         resolve: (root, args, context, info) => {
-          return PersonType.findById(args.id).exec();
+          return PersonModel.findById(args.id).exec();
         }
       }
     }
@@ -160,4 +163,4 @@ app.use(
 );
 
 app.listen(3000);
-console.log("Running a GraphQL API server at http://localhost:4000/graphql");
+console.log("Running a GraphQL API server at http://localhost:3000/graphql");
