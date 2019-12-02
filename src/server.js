@@ -1,6 +1,7 @@
 import { graphql, buildSchema } from "graphql";
 import express from "express";
 import graphqlHTTP from "express-graphql";
+import Mongosoe from "mongoose";
 
 var schema = buildSchema(`
   type Query {
@@ -69,7 +70,7 @@ const getUsers = args => {
 };
 
 /**
- * Mutaion Resolver function
+ * Mutation Resolver function
  */
 
 const updateUser = ({ id, age }) => {
