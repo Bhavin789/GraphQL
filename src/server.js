@@ -122,6 +122,8 @@ const users = [
 
 const getUser = args => {
   const userId = args.id;
+  console.log(userId);
+
   return users.filter(user => user.id === userId)[0];
 };
 const getUsers = args => {
@@ -158,6 +160,7 @@ app.use(
   "/graphql",
   graphqlHTTP({
     schema: schema,
+    rootValue: root,
     graphiql: true
   })
 );
