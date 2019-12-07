@@ -1,20 +1,11 @@
-import {
-  graphql,
-  buildSchema,
-  GraphQLID,
-  GraphQLString,
-  GraphQLList,
-  GraphQLNonNull,
-  GraphQLObjectType,
-  GraphQLSchema
-} from "graphql";
+import { buildSchema } from "graphql";
 import express from "express";
 import graphqlHTTP from "express-graphql";
 import Mongoose from "mongoose";
 
 Mongoose.connect("mongodb://localhost/graphqltutorial-user");
 
-const PersonModel = Mongoose.model("user", {
+const UserModel = Mongoose.model("user", {
   id: Number,
   name: String,
   age: Number,
@@ -28,6 +19,7 @@ var schema = buildSchema(`
   },
   type Mutation{
     updateUser(id: Int!, age: Int!, name: String!): Person
+    addUser(id: Int!, age: Int!, name: String!, gender: String!): Person
   }
   type Person {
     id: Int
@@ -42,11 +34,11 @@ var schema = buildSchema(`
  */
 
 const getUser = args => {
-  return PersonModel.find().exec();
+  return UserModel.find(args).exec();
 };
 
 const getUsers = args => {
-  return PersonModel.find().exec();
+  return UserModel.find(args).exec();
 };
 
 /**
@@ -54,14 +46,20 @@ const getUsers = args => {
  */
 
 const updateUser = ({ id, age, name, gender = "F" }) => {
-  var person = new PersonModel({ id, age, name, gender });
+  var person = new UserModel({ id, age, name, gender });
   return person.save();
+};
+
+const addUser = args => {
+  var user = new UserModel(args);
+  return user.save();
 };
 
 var root = {
   user: getUser,
   users: getUsers,
-  updateUser: updateUser
+  updateUser: updateUser,
+  addUser: addUser
 };
 
 var app = express();
