@@ -2266,9 +2266,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Layout */ "./components/Layout.js");
 /* harmony import */ var next_Link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/Link */ "next/Link");
 /* harmony import */ var next_Link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_Link__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! isomorphic-unfetch */ "isomorphic-unfetch");
+/* harmony import */ var isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_3__);
 var _jsxFileName = "/Users/elnino/Developer/lucideus/graphQL/GraphQL/graphql/pages/index.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
 
 
 
@@ -2278,66 +2281,89 @@ const PostLink = ({
   return __jsx("li", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 6
+      lineNumber: 7
     },
     __self: undefined
   }, __jsx(next_Link__WEBPACK_IMPORTED_MODULE_2___default.a, {
     href: `/post?title=${title}`,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 7
+      lineNumber: 8
     },
     __self: undefined
   }, __jsx("a", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 8
+      lineNumber: 9
     },
     __self: undefined
   }, title)));
 };
 
-const Home = () => {
+const Home = ({
+  shows
+}) => {
   return __jsx(_components_Layout__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 15
-    },
-    __self: undefined
-  }, __jsx("h1", {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 16
     },
     __self: undefined
-  }, "My Blog"), __jsx("ul", {
+  }, __jsx("h1", {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 17
+    },
+    __self: undefined
+  }, "Batman Shows"), __jsx("ul", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 18
+    },
+    __self: undefined
+  }, shows.map(show => __jsx(PostLink, {
+    title: show.name,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 20
+    },
+    __self: undefined
+  }))), __jsx("ul", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 23
     },
     __self: undefined
   }, __jsx(PostLink, {
     title: "Hello Next.js",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 18
+      lineNumber: 24
     },
     __self: undefined
   }, "Hello Next.js"), __jsx(PostLink, {
     title: "Learn Next.js is awesome",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 19
+      lineNumber: 25
     },
     __self: undefined
   }), __jsx(PostLink, {
     title: "Deploy apps with Zeit",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 20
+      lineNumber: 26
     },
     __self: undefined
   })));
+};
+
+Home.getInitialProps = async () => {
+  const res = await isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_3___default()("https://api.tvmaze.com/search/shows?q=batman");
+  const data = await res.json();
+  return {
+    shows: data.map(data => data.show)
+  };
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Home);
@@ -2463,6 +2489,17 @@ module.exports = require("core-js/library/fn/symbol/iterator");
 /***/ (function(module, exports) {
 
 module.exports = require("core-js/library/fn/weak-map");
+
+/***/ }),
+
+/***/ "isomorphic-unfetch":
+/*!*************************************!*\
+  !*** external "isomorphic-unfetch" ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("isomorphic-unfetch");
 
 /***/ }),
 

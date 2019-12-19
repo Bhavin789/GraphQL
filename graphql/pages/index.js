@@ -1,5 +1,6 @@
 import Layout from "../components/Layout";
 import Link from "next/Link";
+import fetch from "isomorphic-unfetch";
 
 const PostLink = ({ title }) => {
   return (
@@ -10,10 +11,15 @@ const PostLink = ({ title }) => {
     </li>
   );
 };
-const Home = () => {
+const Home = ({ shows }) => {
   return (
     <Layout>
-      <h1>My Blog</h1>
+      <h1>Batman Shows</h1>
+      <ul>
+        {shows.map(show => (
+          <PostLink title={show.name} />
+        ))}
+      </ul>
       <ul>
         <PostLink title="Hello Next.js">Hello Next.js</PostLink>
         <PostLink title="Learn Next.js is awesome" />
@@ -21,6 +27,15 @@ const Home = () => {
       </ul>
     </Layout>
   );
+};
+
+Home.getInitialProps = async () => {
+  const res = await fetch("https://api.tvmaze.com/search/shows?q=batman");
+  const data = await res.json();
+
+  return {
+    shows: data.map(data => data.show)
+  };
 };
 
 export default Home;
