@@ -23,36 +23,69 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 const PostLink = ({
   title
 }) => {
-  __jsx("li", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 5
-    },
-    __self: undefined
-  }, __jsx(next_Link__WEBPACK_IMPORTED_MODULE_2___default.a, {
-    href: "/post/".concat(title),
+  return __jsx("li", {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 6
     },
     __self: undefined
-  }, title));
+  }, __jsx(next_Link__WEBPACK_IMPORTED_MODULE_2___default.a, {
+    href: "/post?title=".concat(title),
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 7
+    },
+    __self: undefined
+  }, __jsx("a", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 8
+    },
+    __self: undefined
+  }, title)));
 };
 
 const Home = () => {
   return __jsx(_components_Layout__WEBPACK_IMPORTED_MODULE_1__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 11
+      lineNumber: 15
     },
     __self: undefined
-  }, __jsx("p", {
+  }, __jsx("h1", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 12
+      lineNumber: 16
     },
     __self: undefined
-  }, "Hell nextjs"));
+  }, "My Blog"), __jsx("ul", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 17
+    },
+    __self: undefined
+  }, __jsx(PostLink, {
+    title: "Hello Next.js",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 18
+    },
+    __self: undefined
+  }, "Hello Next.js"), __jsx(PostLink, {
+    title: "Learn Next.js is awesome",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 19
+    },
+    __self: undefined
+  }), __jsx(PostLink, {
+    title: "Deploy apps with Zeit",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 20
+    },
+    __self: undefined
+  })));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Home);
@@ -60,4 +93,4 @@ const Home = () => {
 /***/ })
 
 })
-//# sourceMappingURL=index.js.6c9ca1e418485d78b69f.hot-update.js.map
+//# sourceMappingURL=index.js.0679a0056394d75a7b16.hot-update.js.map

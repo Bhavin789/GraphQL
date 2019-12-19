@@ -2282,7 +2282,7 @@ const PostLink = ({
     },
     __self: undefined
   }, __jsx(next_Link__WEBPACK_IMPORTED_MODULE_2___default.a, {
-    href: `/post?${title}`,
+    href: `/post?title=${title}`,
     __source: {
       fileName: _jsxFileName,
       lineNumber: 7

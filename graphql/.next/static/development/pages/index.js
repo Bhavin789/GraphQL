@@ -7117,7 +7117,7 @@ const PostLink = ({
     },
     __self: undefined
   }, __jsx(next_Link__WEBPACK_IMPORTED_MODULE_2___default.a, {
-    href: "/post?".concat(title),
+    href: "/post?title=".concat(title),
     __source: {
       fileName: _jsxFileName,
       lineNumber: 7
