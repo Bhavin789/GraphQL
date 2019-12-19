@@ -14,6 +14,9 @@
 #cache
 /.next/cache
 
+#static
+/.next/static/development
+
 # misc
 .DS_Store
 .env.local
